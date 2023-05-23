@@ -130,3 +130,4 @@ Wyjście:/Output:
 40
 40 KIELCE SZCZECIN
 
+Tests may dosn't work cause of line endings

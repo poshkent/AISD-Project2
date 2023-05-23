@@ -21,21 +21,21 @@ class City
         }
         name[len] = '\0';
     }
-    void find_name(int &x, int &y, char **map, int width, int height)
+    void find_name(int *x, int *y, char **map, int width, int height)
     {
         for (int dy = -1; dy <= 1; dy++)
         {
             for (int dx = -1; dx <= 1; dx++)
             {
-                if ((dx == 0 && dy == 0) or (x + dx < 0) or (y + dy < 0) or (x + dx >= width) or (y + dy >= height))
+                if ((dx == 0 && dy == 0) or (*x + dx < 0) or (*y + dy < 0) or (*x + dx >= width) or (*y + dy >= height))
                 {
                     continue;
                 }
-                if (map[y + dy][x + dx] >= 48 && map[y + dy][x + dx] <= 'Z')
+                if (map[*y + dy][*x + dx] >= 48 && map[*y + dy][*x + dx] <= 'Z')
                 {
-                    x += dx;
-                    y += dy;
-                    find_beginning(map[y], x);
+                    *x += dx;
+                    *y += dy;
+                    find_beginning(map[*y], *x);
                     return;
                 }
             }
@@ -77,7 +77,7 @@ public:
         {
             has_roads_ = true;
         }
-        find_name(x, y, map, width, height);
+        find_name(&x, &y, map, width, height);
         set_name(&map[y][x]);
     }
     int get_x()
